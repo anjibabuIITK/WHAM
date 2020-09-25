@@ -7,7 +7,7 @@
 *   Active Present Contributors:
 
             Anji Babu Kapakayala
-	    Ritama Kar
+	       Ritama Kar
             
  *  Useful git commands:
 
