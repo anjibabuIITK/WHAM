@@ -1,14 +1,35 @@
 # WHAM
-Purpose of the project: Generalized WHAM for periodic and non periodic cases. And also for 1D, 2D and 4D with mpi
 
-This project is to write a parallalized general code to solve wham equatons 
+*   Project Description:
 
-Contributor: Anji Babu Kapakayala
-             anjibabu480@gmail.com
+	    This project is to develope a generalized wham code using MODULE based FORTRAN90. 
+
+*   Active Present Contributors:
+
+            Anji Babu Kapakayala
+            
+ *  Useful git commands:
+
+	   	git status
+	   	git clone git@github.com:anjibabuIITK/TASS_REWEIGHTING_PACKAGE.git
+        git add *
+        git commit -m "write the message what you have done"
+        git status
+	   	git push origin master
+	   	git pull origin master
+
+ *  USAGE:
  
- 
- 
- 
-  Cheers!
-  Anji Babu
-  25-09-2020
+ 	    cd MODULE
+	    make
+	    ./wham.exe
+       * will be updated
+       
+  * MANDATORY INPUTS:
+  	    
+	   *will be updated
+	
+	
+		Cheers!
+		Anji 
+		25-09-2020
