@@ -11,7 +11,7 @@
  *  Useful git commands:
 
 	   	git status
-	   	git clone git@github.com:anjibabuIITK/TASS_REWEIGHTING_PACKAGE.git
+	   	git clone git@github.com:anjibabuIITK/WHAM.git
         git add *
         git commit -m "write the message what you have done"
         git status
