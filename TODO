@@ -3,3 +3,15 @@
 1. Make wham 2D code to module based
 2. Add other dimensions (1D, 3D and 4D )
 3. Test with data
+
+# Directories
+modules: All newly written modules will behere
+sorces: Previous codes
+bin: excutable
+
+# Modules Needed
+1. readInput
+2. WHAM
+3. WriteData
+4. openmpi
+
