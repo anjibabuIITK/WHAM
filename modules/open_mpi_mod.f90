@@ -60,10 +60,31 @@ CALL MPI_BCAST(myint,leng,MPI_INTEGER,0,MPI_COMM_WORLD,i_err)
 END
 !****************************************************************************************!
 
+SUBROUTINE IBcast_1(myint,leng)
+IMPLICIT NONE
+INCLUDE 'mpif.h'
+INTEGER :: leng, myint, i_err
+!#if defined (_PARALLEL)
+CALL MPI_BCAST(myint,leng,MPI_INTEGER,0,MPI_COMM_WORLD,i_err)
+!#endif
+END
+!****************************************************************************************!
+
 SUBROUTINE RBcast(myreal,leng)
 IMPLICIT NONE
 INCLUDE 'mpif.h'
-INTEGER :: myreal(*)
+REAL*8 :: myreal(*)
+INTEGER :: leng, i_err
+!#if defined (_PARALLEL)
+CALL MPI_BCAST(myreal,leng,MPI_DOUBLE_PRECISION,0,MPI_COMM_WORLD,i_err)
+!#endif
+END
+!****************************************************************************************!
+
+SUBROUTINE RBcast_1(myreal,leng)
+IMPLICIT NONE
+INCLUDE 'mpif.h'
+REAL*8:: myreal
 INTEGER :: leng, i_err
 !#if defined (_PARALLEL)
 CALL MPI_BCAST(myreal,leng,MPI_DOUBLE_PRECISION,0,MPI_COMM_WORLD,i_err)

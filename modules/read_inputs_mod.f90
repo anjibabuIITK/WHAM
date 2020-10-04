@@ -8,7 +8,7 @@ USE open_mpi
   REAL*8 :: kt,toler, dummy
   INTEGER :: i_umbr, i_s1, i_s2
   CHARACTER(LEN=50) :: cvfile,f1
-  LOGICAL :: parent
+  LOGICAL :: parent, periodic=.FALSE.
   REAL*8, PARAMETER :: kb=1.9872041E-3 !kcal K-1 mol-1
   REAL*8, PARAMETER :: kj_to_kcal = 0.239006
 
@@ -18,6 +18,9 @@ USE open_mpi
 SUBROUTINE read_input
 CALL MPI_Start
 CALL Set_Parent(parent)
+
+! Check for the input files
+if(parent) CALL Check_files()
 
 if(parent)then
   open (unit=1, file='input',status='old')
@@ -106,5 +109,55 @@ call IBcast(nmax,umbr_n)
 call RBcast(biased_prob,nbin1*nbin2*umbr_n)
 
 END SUBROUTINE read_whaminput_2D
+!!##############################################################################################################################################
+SUBROUTINE Check_files()
+implicit none
+logical :: file_exists
+
+! Looking for input file
+INQUIRE(FILE="input", EXIST=file_exists)
+
+    if(file_exists) then
+       print*," input file : Found"
+    else
+       print*," input file : Not Found"
+       stop
+   endif
+
+! Looking for whaminput file
+INQUIRE(FILE="whaminput", EXIST=file_exists)
+
+    if(file_exists) then
+       print*," whaminput file : Found"
+    else
+       print*," whaminput file : Not Found"
+       stop
+   endif
+
+
+
+END SUBROUTINE Check_files
+
+!!##############################################################################################################################################
+
+SUBROUTINE ApplyPeriodicity(x)
+implicit none
+real*8, intent(inout)::x
+REAL*8,PARAMETER :: pi=4.d0*atan(1.d0)
+
+! Applying Periodicity
+
+   if (x .gt. pi ) x = x - 2.d0*pi
+   if (x .lt.-pi ) x = x + 2.d0*pi
+
+RETURN
+END SUBROUTINE
+
+
+!!##############################################################################################################################################
+
+
+
+
 
 END MODULE Read_Inputs

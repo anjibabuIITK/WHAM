@@ -1,8 +1,10 @@
 # Things to do ( TASK list)
 
-1. Make wham 2D code to module based
-2. Add other dimensions (1D, 3D and 4D )
-3. Test with data
+1. Make wham 2D code to module based    : done
+2. Test with Ala tri pep data
+3. Have to generalise for periodic and non periodic cases
+4. Add other dimensions (1D, 3D and 4D )
+5. Test with data
 
 # Directories
 modules: All newly written modules will behere
