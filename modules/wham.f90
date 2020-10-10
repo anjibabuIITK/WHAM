@@ -7,7 +7,8 @@ USE Write_Data
 
 CALL read_input
 
-CALL perform_wham(biased_prob)
+print*, "Periodicty:",periodic   
+!CALL perform_wham_2D(biased_prob)
 
 !CALL write_fes(prob)
 

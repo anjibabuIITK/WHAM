@@ -7,6 +7,7 @@ USE Write_Data
 IMPLICIT NONE
 
 
+
 INTERFACE perform_wham
   MODULE PROCEDURE perform_wham_2D
 END INTERFACE perform_wham
@@ -22,12 +23,14 @@ INTEGER ::  rank, gleng1_min,gleng1_max,gleng2,ngrid
 
 
 
+
 CONTAINS
   SUBROUTINE perform_wham_2D(biased_prob)
    REAL*8, INTENT(IN) :: biased_prob(:,:,:) 
 real*8 :: prob(nbin1,nbin2)
 !   REAL*8 :: prob(:,:) 
-   
+
+
  if (parent)  write(*,*) 'wham begins'
  CALL DistributeGrids_2d(ncv,grid0,grid,rank,gleng1_min,gleng1_max)
 

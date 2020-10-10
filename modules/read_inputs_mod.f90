@@ -18,6 +18,7 @@ USE open_mpi
 SUBROUTINE read_input
 IMPLICIT NONE
 INTEGER:: i
+character(len=len('non-periodic')) :: keyword
 CALL MPI_Start
 CALL Set_Parent(parent)
 
@@ -53,6 +54,26 @@ if (parent) then
     write(*,'(i10,3f16.6)')i,grid0(1:3,i)
  end do
 end if
+
+if(parent) then
+
+    read(1,*)keyword
+
+ if (keyword .eq. "periodic") then
+    print*,"Periodicity applied"
+    periodic=.TRUE.
+ elseif(keyword .eq. "non-periodic") then
+   print*, "Non- Periodic"
+    periodic=.FALSE.
+ else
+ Print*, "Setting default periodicty off"
+    periodic=.FALSE.
+endif
+
+
+endif
+
+
 !! Call subroutine according to dimension
    IF(ncv==2)CALL read_whaminput_2D
 
