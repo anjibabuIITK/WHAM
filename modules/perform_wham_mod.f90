@@ -3,21 +3,30 @@ USE open_mpi
 USE Read_Inputs
 USE Write_Data
 
+
+IMPLICIT NONE
+
+
 INTERFACE perform_wham
   MODULE PROCEDURE perform_wham_2D
 END INTERFACE perform_wham
 
-IMPLICIT NONE
-INTEGER :: i,iter,nbin1,nbin2
+
+INTEGER :: iter,nbin1,nbin2
+!INTEGER:: i
 REAL*8 :: cnvg, dummy_1, dummy_2, dummy_3
 INTEGER ::  rank, gleng1_min,gleng1_max,gleng2,ngrid
-real*8, parameter :: au_to_kcal = 627.51
-real*8, parameter :: kj_to_kcal = 0.239006
+!real*8, parameter :: au_to_kcal = 627.51
+!real*8, parameter :: kj_to_kcal = 0.239006
+
+
 
 
 CONTAINS
   SUBROUTINE perform_wham_2D(biased_prob)
    REAL*8, INTENT(IN) :: biased_prob(:,:,:) 
+real*8 :: prob(nbin1,nbin2)
+!   REAL*8 :: prob(:,:) 
    
  if (parent)  write(*,*) 'wham begins'
  CALL DistributeGrids_2d(ncv,grid0,grid,rank,gleng1_min,gleng1_max)

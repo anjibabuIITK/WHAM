@@ -5,7 +5,7 @@
 3. Have to generalise for periodic and non periodic cases
 4. Add other dimensions (1D, 3D and 4D )
 5. Test with data
-
+6. use master instead parent for mpi
 # Directories
 modules: All newly written modules will behere
 sorces: Previous codes

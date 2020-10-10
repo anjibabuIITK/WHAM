@@ -1,4 +1,4 @@
-PROGRAM wham
+PROGRAM main
 USE open_mpi
 USE Read_Inputs
 USE wham
@@ -9,6 +9,6 @@ CALL read_input
 
 CALL perform_wham(biased_prob)
 
-CALL write_fes(prob)
+!CALL write_fes(prob)
 
-END PROGRAM wham
+END PROGRAM main

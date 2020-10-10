@@ -6,7 +6,7 @@ USE open_mpi
   REAL*8, ALLOCATABLE :: grid0(:,:),a(:),umbr_mean(:), umbr_k(:),grid(:,:)
   INTEGER, ALLOCATABLE :: nmax(:)
   REAL*8 :: kt,toler, dummy
-  INTEGER :: i_umbr, i_s1, i_s2
+  INTEGER :: i_umbr, i_s1, i_s2,i,j,k
   CHARACTER(LEN=50) :: cvfile,f1
   LOGICAL :: parent, periodic=.FALSE.
   REAL*8, PARAMETER :: kb=1.9872041E-3 !kcal K-1 mol-1
@@ -16,6 +16,8 @@ USE open_mpi
 !!
 !########################################################################################################################################
 SUBROUTINE read_input
+IMPLICIT NONE
+INTEGER:: i
 CALL MPI_Start
 CALL Set_Parent(parent)
 
@@ -30,9 +32,9 @@ end if
   kt=kb*kt
 
 !broadcast ncv
-CALL IBcast(ncv,1)
-CALL IBcast(umbr_n,1)
-CALL RBcast(kt,1)
+CALL IBcast_1(ncv,1)
+CALL IBcast_1(umbr_n,1)
+CALL RBcast_1(kt,1)
 
 !allocate grid0
 ALLOCATE(grid(3,ncv))
@@ -72,8 +74,8 @@ end if
 
 !broadcast grids and bin info
 CALL RBcast(grid0,3*ncv)
-CALL IBcast(nbin1,1)
-CALL IBcast(nbin2,1)
+CALL IBcast_1(nbin1,1)
+CALL IBcast_1(nbin2,1)
 !! Difference in allocation
 ALLOCATE(biased_prob(nbin1,nbin2,umbr_n))
 ALLOCATE(prob(nbin1,nbin2))
@@ -102,7 +104,7 @@ if (parent) then
    enddo
 end if
 
-call RBcast(toler,1)
+call RBcast_1(toler,1)
 call RBcast(umbr_mean,umbr_n)
 call RBcast(umbr_k,umbr_n)
 call IBcast(nmax,umbr_n)
